@@ -24,8 +24,8 @@ export const CatalogPage = async ({
   const url = buildUrl(`${process.env.NEXT_PUBLIC_API_URL}/products`, params);
 
   const res = await fetch(url, {
-    next: { revalidate: 3600 },
-    // cache: "no-store"
+    // next: { revalidate: 3600 },
+    cache: "no-store"
   });
 
   if (!res.ok) {

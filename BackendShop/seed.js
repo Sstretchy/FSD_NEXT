@@ -11,11 +11,16 @@ const seedProducts = async () => {
 
     await Product.deleteMany();
 
-    const data = JSON.parse(
-      fs.readFileSync(path.join(__dirname, 'seed-data/products.json'), 'utf-8')
-    );
+    if (process.env.SEED === 'true') {
+      const data = JSON.parse(
+        fs.readFileSync(
+          path.join(__dirname, 'seed-data/products.json'),
+          'utf-8'
+        )
+      );
 
-    await Product.insertMany(data);
+      await Product.insertMany(data);
+    }
 
     console.log('✅ Данные загружены');
     process.exit();
