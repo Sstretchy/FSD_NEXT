@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "dev:docker": "USE_DOCKER=true next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -12,6 +13,7 @@
     "@reduxjs/toolkit": "^2.6.1",
     "axios": "^1.8.4",
     "clsx": "^2.1.1",
+    "cross-env": "^7.0.3",
     "next": "^15.2.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

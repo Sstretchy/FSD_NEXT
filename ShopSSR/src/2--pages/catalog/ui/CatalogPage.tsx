@@ -25,6 +25,7 @@ export const CatalogPage = async ({
 
   const res = await fetch(url, {
     next: { revalidate: 3600 },
+    // cache: "no-store"
   });
 
   if (!res.ok) {

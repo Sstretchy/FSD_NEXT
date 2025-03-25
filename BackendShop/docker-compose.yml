@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  backend:
+    build: .
+    container_name: shop-backend
+    ports:
+      - "5001:5000"
+    env_file:
+      - .env.docker
+    depends_on:
+      - mongo
+    networks:
+      - shop-network
+
+  mongo:
+    image: mongo:6
+    container_name: shop-mongo
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - shop-network
+
+  frontend:
+    build:
+      context: ../ShopSSR
+      dockerfile: Dockerfile.dev
+    container_name: shop-frontend
+    ports:
+      - "3001:3000"
+    volumes:
+      - ../ShopSSR:/app
+      - /app/node_modules
+    env_file:
+      - ../ShopSSR/.env.docker
+    networks:
+      - shop-network
+
+volumes:
+  mongo-data:
+
+networks:
+  shop-network:
